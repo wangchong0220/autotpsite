@@ -5,11 +5,8 @@
 # @File   :hr3.py
 from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
-
 from sqtp.models import Request, Step, Config, Case, Project
-
 from sqtp.serializers import ProjectSerializer, UserSerializer
-from rest_framework.validators import ValidationError
 
 # web请求序列化器
 from sqtp.utils import filter_data
