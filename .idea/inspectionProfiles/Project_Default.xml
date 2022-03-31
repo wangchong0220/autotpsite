@@ -1,0 +1,23 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="django.db.models.JSONField" />
+          <option value="sqtp.models.mgr.User" />
+          <option value="sqtp.views.api_view" />
+          <option value="sqtp.views.status" />
+          <option value="sqtp.serializers.Response" />
+          <option value="sqtp.serializers.validationError" />
+          <option value="sqtp.views.RegisterSeriaizer" />
+          <option value="sqtp.views.authentication_class" />
+          <option value="sqtp.views.BasicAuthentication" />
+          <option value="sqtp.views.SessionAuthentication" />
+          <option value="sqtp.serializers.hr3.ValidationError" />
+          <option value="sqtp.views.action" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

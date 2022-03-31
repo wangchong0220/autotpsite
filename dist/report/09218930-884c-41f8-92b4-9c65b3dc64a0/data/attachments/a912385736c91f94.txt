@@ -1,0 +1,50 @@
+[32m2021-07-01 20:34:13.886[0m | [1mINFO    [0m | [36mhttprunner.runner[0m:[36mtest_start[0m:[36m451[0m - [1mStart to run testcase: 用例001, TestCase ID: d76b0325-8e56-46aa-aee5-d9ae632e73d2[0m
+[32m2021-07-01 20:34:13.887[0m | [1mINFO    [0m | [36mhttprunner.runner[0m:[36m__run_step[0m:[36m292[0m - [1mrun step begin: step_1 >>>>>>[0m
+[32m2021-07-01 20:34:34.911[0m | [33m[1mWARNING [0m | [36mhttprunner.client[0m:[36mrequest[0m:[36m188[0m - [33m[1mfailed to get client address info: 'NoneType' object has no attribute 'connection'[0m
+[32m2021-07-01 20:34:34.911[0m | [33m[1mWARNING [0m | [36mhttprunner.client[0m:[36mrequest[0m:[36m196[0m - [33m[1mfailed to get server address info: 'NoneType' object has no attribute 'connection'[0m
+[32m2021-07-01 20:34:34.915[0m | [34m[1mDEBUG   [0m | [36mhttprunner.client[0m:[36mlog_print[0m:[36m40[0m - [34m[1m
+================== request details ==================
+method   : GET
+url      : http://localhost.com/api/mgr/loginReq
+headers  : {}
+cookies  : {}
+body     : None
+[0m
+[32m2021-07-01 20:34:34.921[0m | [34m[1mDEBUG   [0m | [36mhttprunner.client[0m:[36mlog_print[0m:[36m40[0m - [34m[1m
+================== response details ==================
+status_code : 0
+headers  : {}
+cookies  : {}
+encoding : None
+content_type : 
+body     : 
+[0m
+[32m2021-07-01 20:34:34.921[0m | [31m[1mERROR   [0m | [36mhttprunner.client[0m:[36mrequest[0m:[36m215[0m - [31m[1mHTTPConnectionPool(host='localhost.com', port=80): Max retries exceeded with url: /api/mgr/loginReq (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000002149878B208>: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))[0m
+[32m2021-07-01 20:34:34.922[0m | [1mINFO    [0m | [36mhttprunner.response[0m:[36mextract[0m:[36m176[0m - [1mextract mapping: {'cookie': None}[0m
+[32m2021-07-01 20:34:34.922[0m | [1mINFO    [0m | [36mhttprunner.runner[0m:[36m__run_step[0m:[36m304[0m - [1mrun step end: step_1 <<<<<<
+[0m
+[32m2021-07-01 20:34:34.923[0m | [1mINFO    [0m | [36mhttprunner.runner[0m:[36m__run_step[0m:[36m292[0m - [1mrun step begin: step_1 >>>>>>[0m
+[32m2021-07-01 20:34:55.931[0m | [33m[1mWARNING [0m | [36mhttprunner.client[0m:[36mrequest[0m:[36m188[0m - [33m[1mfailed to get client address info: 'NoneType' object has no attribute 'connection'[0m
+[32m2021-07-01 20:34:55.932[0m | [33m[1mWARNING [0m | [36mhttprunner.client[0m:[36mrequest[0m:[36m196[0m - [33m[1mfailed to get server address info: 'NoneType' object has no attribute 'connection'[0m
+[32m2021-07-01 20:34:55.932[0m | [34m[1mDEBUG   [0m | [36mhttprunner.client[0m:[36mlog_print[0m:[36m40[0m - [34m[1m
+================== request details ==================
+method   : GET
+url      : http://localhost.com/api/mgr/loginReq
+headers  : {}
+cookies  : {}
+body     : None
+[0m
+[32m2021-07-01 20:34:55.932[0m | [34m[1mDEBUG   [0m | [36mhttprunner.client[0m:[36mlog_print[0m:[36m40[0m - [34m[1m
+================== response details ==================
+status_code : 0
+headers  : {}
+cookies  : {}
+encoding : None
+content_type : 
+body     : 
+[0m
+[32m2021-07-01 20:34:55.932[0m | [31m[1mERROR   [0m | [36mhttprunner.client[0m:[36mrequest[0m:[36m215[0m - [31m[1mHTTPConnectionPool(host='localhost.com', port=80): Max retries exceeded with url: /api/mgr/loginReq (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000021498E6D9B0>: Failed to establish a new connection: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。',))[0m
+[32m2021-07-01 20:34:55.932[0m | [1mINFO    [0m | [36mhttprunner.response[0m:[36mextract[0m:[36m176[0m - [1mextract mapping: {'cookie': None}[0m
+[32m2021-07-01 20:34:55.932[0m | [1mINFO    [0m | [36mhttprunner.runner[0m:[36m__run_step[0m:[36m304[0m - [1mrun step end: step_1 <<<<<<
+[0m
+[32m2021-07-01 20:34:55.933[0m | [1mINFO    [0m | [36mhttprunner.runner[0m:[36mtest_start[0m:[36m460[0m - [1mgenerate testcase log: D:\Course\course_django\autotpsite_day10\logs\d76b0325-8e56-46aa-aee5-d9ae632e73d2.run.log[0m

@@ -1,0 +1,90 @@
+{
+  "uid" : "e16e20ea87bb3268",
+  "name" : "用例002",
+  "fullName" : "testcase.艺画开天_用例002_test.TestCase艺画开天用例002#test_start",
+  "historyId" : "4c5b8cfde1c71888fe587eae00300387",
+  "time" : {
+    "start" : 1625142895939,
+    "stop" : 1625142899957,
+    "duration" : 4018
+  },
+  "description" : "TestCase ID: 2f2803b8-2c4a-480e-8b8f-f97a37a82def",
+  "descriptionHtml" : "<p>TestCase ID: 2f2803b8-2c4a-480e-8b8f-f97a37a82def</p>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "description" : "TestCase ID: 2f2803b8-2c4a-480e-8b8f-f97a37a82def",
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "step: step_1",
+      "time" : {
+        "start" : 1625142895942,
+        "stop" : 1625142899957,
+        "duration" : 4015
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "hasContent" : false,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false
+    } ],
+    "attachments" : [ {
+      "uid" : "771a90c6b5f72a95",
+      "name" : "stderr",
+      "source" : "771a90c6b5f72a95.txt",
+      "type" : "text/plain",
+      "size" : 2368
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "hasContent" : true,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : false
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "testcase"
+  }, {
+    "name" : "suite",
+    "value" : "艺画开天_用例002_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestCase艺画开天用例002"
+  }, {
+    "name" : "host",
+    "value" : "LAPTOP-2JDKMUS8"
+  }, {
+    "name" : "thread",
+    "value" : "4232-Thread-1"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "testcase.艺画开天_用例002_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "e16e20ea87bb3268.json",
+  "parameterValues" : [ ]
+}

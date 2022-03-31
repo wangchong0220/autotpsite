@@ -1,0 +1,15 @@
+{
+    "config": {
+        "name": "case0033",
+        "base_url": "http://localhost"
+    },
+    "teststeps": [
+        {
+            "name": "step_name001",
+            "request": {
+                "method": "GET",
+                "url": "/api/api"
+            }
+        }
+    ]
+}

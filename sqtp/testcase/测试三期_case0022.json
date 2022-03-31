@@ -1,0 +1,85 @@
+{
+    "config": {
+        "project": {
+            "id": 5,
+            "admin": {
+                "date_joined": "2022-03-27T07:06:59.427618Z",
+                "email": "877431474@qq.com",
+                "id": 3,
+                "is_active": true,
+                "is_superuser": true,
+                "phone": "13514236578",
+                "realname": "王崇",
+                "username": "wangchong",
+                "user_type": 1
+            },
+            "name": "测试三期",
+            "status": "开发中",
+            "version": "1",
+            "desc": "ck_三期",
+            "create_time": "2022-03-27 07:17:40",
+            "update_time": "2022-03-27 07:17:40"
+        },
+        "name": "case0022",
+        "base_url": "http://localhost",
+        "variables": null,
+        "parameters": null,
+        "export": null,
+        "verify": false
+    },
+    "teststeps": [
+        {
+            "name": "step_001",
+            "variables": {},
+            "request": {
+                "method": "GET",
+                "url": "/demo/path",
+                "params": null,
+                "headers": null,
+                "json": null,
+                "data": null
+            },
+            "extract": {},
+            "validate": {},
+            "setup_hooks": [],
+            "teardown_hooks": [],
+            "belong_case_id": 8,
+            "sorted_no": 1
+        },
+        {
+            "name": "step_002",
+            "variables": {},
+            "request": {
+                "method": "GET",
+                "url": "/demo/path",
+                "params": null,
+                "headers": null,
+                "json": null,
+                "data": null
+            },
+            "extract": {},
+            "validate": {},
+            "setup_hooks": [],
+            "teardown_hooks": [],
+            "belong_case_id": 8,
+            "sorted_no": 2
+        }
+    ],
+    "desc": "测试用例2",
+    "id": 8,
+    "file_path": "测试三期_case0022.json",
+    "create_time": "2022-03-27 11:10:03",
+    "update_time": "2022-03-31 08:29:44",
+    "create_by": null,
+    "updated_by": {
+        "date_joined": "2022-03-27T07:06:59.427618Z",
+        "email": "877431474@qq.com",
+        "id": 3,
+        "is_active": true,
+        "is_superuser": true,
+        "phone": "13514236578",
+        "realname": "王崇",
+        "username": "wangchong",
+        "user_type": 1
+    }
+}
