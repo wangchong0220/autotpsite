@@ -3,7 +3,7 @@
 # @Author :chongwang
 # @Email  :877431474@qq.com
 # @File   :hr3.py
-
+from httprunner.cli import main_run  # 执行用例模块
 from sqtp.models import Request, Step, Config, Case  # 导入模块
 from sqtp.serializers import RequestSerializer, StepSerializer, CaseSerializer, \
     ConfigSerializer
@@ -54,8 +54,14 @@ class CaseViewSet(viewsets.ModelViewSet):
         # 获取序列化器
         case = Case.objects.get(pk=pk)  # 根据id获取当前的用例
         serializer = self.get_serializer(instance=case)  # 获取序列化器数据
-        serializer.to_json_file()  # 把获取到的序列化器数据进行json转换
-        return Response(data={'msg': 'success', 'retcode': status.HTTP_200_OK})
+        path = serializer.to_json_file()  # 把获取到的序列化器数据进行json转换，生成用例文件
+        # API执行法，是HR3自带的执行法
+        # main_run运行的是一个列表，所以必须加上[]
+        exit_code = main_run([path])
+        if exit_code != 0:
+            return Response(data={"error": "执行用例失败", "retcode": exit_code},
+                            status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response(data={'msg': '执行用例成功', 'retcode': status.HTTP_200_OK})
 
 
 # 测试步骤视图集
