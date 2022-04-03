@@ -7,4 +7,4 @@
 from .hr3 import Step, Request, Config, Case
 from .mgr import Project, Environment
 from .auth import User
-from .task import Plan
+from .task import Plan, Report
