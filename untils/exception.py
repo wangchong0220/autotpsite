@@ -4,7 +4,7 @@
 # @Email  :877431474@qq.com
 # @File   :exception.py
 from rest_framework import exceptions
-from rest_framework.views import exception_handler, Response
+from rest_framework.views import exception_handler
 
 
 def my_exception_handler(exc, content):

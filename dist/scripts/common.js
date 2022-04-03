@@ -33,7 +33,6 @@ function current_user() {
     type: 'get',
     url: '/api/current_user/',
     success: function (result, textStatus) {
-      console.log(result)
       //判断当前用户是否处于登录状态
       if (result.retcode === 200) {
         //设置跑马灯文本
@@ -217,7 +216,6 @@ function multiple_select_attach(path, target_select, targets, params) {
             }
           });
         }
-
       }
     },
     error: function () {
@@ -259,7 +257,6 @@ function multiple_checked_box(path, target_select, targets, params) {
             }
           });
         }
-
       }
     },
     error: function () {
@@ -453,9 +450,6 @@ function collect_data(field, value, row, $element) {
 }
 
 function saveData(index, field, value) {
-  console.log(index)
-  console.log(field)
-  console.log(value)
   $('#detail_view').bootstrapTable('updateCell', {
     index: index,       //行索引
     field: field,       //列名

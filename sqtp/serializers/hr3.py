@@ -7,11 +7,11 @@ from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 from sqtp.models import Request, Step, Config, Case, Project
 from sqtp.serializers import ProjectSerializer, UserSerializer
+from sqtp.utils import filter_data
+from rest_framework.exceptions import ValidationError
+
 
 # web请求序列化器
-from sqtp.utils import filter_data
-
-
 class RequestSerializer(serializers.ModelSerializer):
     method = serializers.SerializerMethodField()  # 指定该字段被底下的get_method获取，这是框架设计的固定写法
     step_id = serializers.IntegerField(write_only=True, required=False)  # 配合Step序列化器的字段是用
@@ -28,6 +28,18 @@ class RequestSerializer(serializers.ModelSerializer):
         # fields = ['step','method',.....] 指定部分序列化字段，些什么字段名就序列化哪些字段
         fields = ['step_id', 'method', 'url', 'params', 'headers', 'json', 'data']  # 指定序列化的字段，__all__是所有的字段
 
+    # 批量自定义校验器
+    def validate(self, attrs):
+        template = {
+            'params': dict,
+            'headers': dict,
+            'cookies': dict
+        }
+        for param_name, type_name in template.items():
+            if param_name in attrs and not isinstance(attrs[param_name], type_name):
+                raise ValidationError(f'请输入正确的{param_name}格式：{type_name}')
+        return attrs
+
 
 # web配置序列化器
 class ConfigSerializer(serializers.ModelSerializer):
@@ -38,6 +50,22 @@ class ConfigSerializer(serializers.ModelSerializer):
     class Meta:
         model = Config
         fields = ['project', 'name', 'base_url', 'variables', 'parameters', 'export', 'verify']
+
+    def validate(self, attrs):
+        template = {
+            'variables': dict,
+            'parameters': dict,
+            'export': list,
+            'base_url': str
+        }
+        for param_name, type_name in template.items():
+            if param_name in attrs and not isinstance(attrs[param_name], type_name):
+                # 数据类型校验
+                raise ValidationError(f'请传递正确的{param_name}格式: {type_name}')
+            # 再加入base_url格式检测--是否以http://或https://开头
+            if not 'base_url'.startswith('http://'):
+                raise ValidationError('请输入正确的url，以http://开头')
+        return attrs
 
 
 # 测试步骤序列化器
@@ -64,6 +92,20 @@ class StepSerializer(serializers.ModelSerializer):
         model = Step
         fields = ['name', 'variables', 'request', 'extract', 'validate',
                   'setup_hooks', 'teardown_hooks', 'belong_case_id', 'sorted_no']
+
+    def validate(self, attrs):
+        template = {
+            'variables': dict,
+            'request': dict,
+            'extract': dict,
+            'validate': list,
+            'setup_hooks': list,
+            'teardown_hooks': list,
+        }
+        for param_name, type_name in template.items():
+            if param_name in attrs and not isinstance(attrs[param_name], type_name):
+                raise ValidationError[f'请输入正确的{param_name}的格式：{type_name}']
+        return attrs
 
 
 # 测试用例序列化器

@@ -305,8 +305,8 @@ const columns = [{
 
 function parse_status(value, row, index) {
   let span = $('<span></span>').addClass('badge')
-  if (value === '未执行') {
-    span.addClass('badge-light').text('未执行')
+  if (value === '未运行') {
+    span.addClass('badge-light').text('未运行')
   } else if (value === '执行中') {
     span.addClass('badge-info').text('执行中')
   } else if (value === '中断') {
