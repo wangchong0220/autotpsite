@@ -5,7 +5,7 @@
 # @File   :task.py
 from httprunner.cli import main_run
 from rest_framework.decorators import action
-
+from sqtp.utils import setup_case_dir
 from sqtp.serializers import PlanSerializer, CaseSerializer
 from sqtp.models import Plan, Report
 from rest_framework import viewsets, status
@@ -33,6 +33,7 @@ class PlanViewSet(viewsets.ModelViewSet):
         # 执行的时候更新计划状态并保存
         plan.status = 1
         plan.save()
+        setup_case_dir('sqtp/testcase')
         # 获取测试用例路径
         case_list = []
         for case in plan.cases.all():  # 生成测试用例文件，在收集测试路径
@@ -45,6 +46,8 @@ class PlanViewSet(viewsets.ModelViewSet):
         plan.status = 3
         plan.exec_counts += 1
         plan.save()
+        # 保存报告数据
+        Report.objects.create(plan=plan, path='report/html/index.html',trigger=request.user)
         if exit_code != 0:
             return Response(data={"error": "执行计划失败", "retcode": exit_code},
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)

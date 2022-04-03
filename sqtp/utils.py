@@ -4,6 +4,7 @@
 # @Email  :877431474@qq.com
 # @File   :demo1.py
 # 过滤json文件的数据--接收字典格式数据，过滤非必要数据和非空字段数据。
+import os
 from pprint import pprint
 
 
@@ -76,118 +77,13 @@ def merge_dict(left, right):
     return left  # 这里的left是已经处理好的数据
 
 
-if __name__ == '__main__':
-    template = {
-        'config': {
-            'name': str,
-            'base_url': str,
-            'variables': dict,
-            'parameters': dict,
-            'verify': bool,
-            'export': list
-        },
-        'teststeps': [{
-            'name': str,
-            'variables': list,
-            'extract': dict,
-            'validate': list,
-            'setup_hooks': list,
-            'teardown_hooks': list,
-            'request': {
-                'method': str,
-                'url': str,
-                'params': list,
-                'headers': dict,
-                'cookies': dict,
-                'data': dict,
-                'json': dict
-            },
-        }]
-    }
-    data = {
-    "config": {
-        "project": {
-            "id": 5,
-            "admin": {
-                "date_joined": "2022-03-27T07:06:59.427618Z",
-                "email": "877431474@qq.com",
-                "id": 3,
-                "is_active": True,
-                "is_superuser": True,
-                "phone": "13514236578",
-                "realname": "王崇",
-                "username": "wangchong",
-                "user_type": 1
-            },
-            "name": "测试三期",
-            "status": "开发中",
-            "version": "1",
-            "desc": "ck_三期",
-            "create_time": "2022-03-27 07:17:40",
-            "update_time": "2022-03-27 07:17:40"
-        },
-        "name": "case0022",
-        "base_url": "http://localhost",
-        "variables": None,
-        "parameters": None,
-        "export": None,
-        "verify": False
-    },
-    "teststeps": [
-        {
-            "name": "step_001",
-            "variables": {},
-            "request": {
-                "method": "GET",
-                "url": "/demo/path",
-                "params": None,
-                "headers": None,
-                "json": None,
-                "data": None
-            },
-            "extract": {},
-            "validate": {},
-            "setup_hooks": [],
-            "teardown_hooks": [],
-            "belong_case_id": 8,
-            "sorted_no": 1
-        },
-        {
-            "name": "step_002",
-            "variables": {},
-            "request": {
-                "method": "GET",
-                "url": "/demo/path",
-                "params": None,
-                "headers": None,
-                "json": None,
-                "data": None
-            },
-            "extract": {},
-            "validate": {},
-            "setup_hooks": [],
-            "teardown_hooks": [],
-            "belong_case_id": 8,
-            "sorted_no": 2
-        }
-    ],
-    "desc": "测试用例2",
-    "id": 8,
-    "file_path": "测试三期_case0022.json",
-    "create_time": "2022-03-27 11:10:03",
-    "update_time": "2022-03-31 08:29:44",
-    "create_by": None,
-    "updated_by": {
-        "date_joined": "2022-03-27T07:06:59.427618Z",
-        "email": "877431474@qq.com",
-        "id": 3,
-        "is_active": True,
-        "is_superuser": True,
-        "phone": "13514236578",
-        "realname": "王崇",
-        "username": "wangchong",
-        "user_type": 1
-    }
-}
-    mg = merge_dict(template, data)
-    pprint(mg)
+def setup_case_dir(case_path):
+    empty_dir_files(case_path,'json','py','pyc')
+
+
+# 每次执行前清空用例目录
+def empty_dir_files(path, *suffix):  # suffix是可选参数
+    for root, dirs, files in os.walk(path):  # list是浅层遍历，walk是深层遍历
+        for fi in files:
+            if fi.split('.')[-1] in suffix:
+                os.remove(os.path.join(root, fi))
