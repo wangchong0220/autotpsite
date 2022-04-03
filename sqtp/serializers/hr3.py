@@ -56,15 +56,11 @@ class ConfigSerializer(serializers.ModelSerializer):
             'variables': dict,
             'parameters': dict,
             'export': list,
-            'base_url': str
         }
         for param_name, type_name in template.items():
             if param_name in attrs and not isinstance(attrs[param_name], type_name):
                 # 数据类型校验
                 raise ValidationError(f'请传递正确的{param_name}格式: {type_name}')
-            # 再加入base_url格式检测--是否以http://或https://开头
-            if not 'base_url'.startswith('http://'):
-                raise ValidationError('请输入正确的url，以http://开头')
         return attrs
 
 
@@ -98,7 +94,7 @@ class StepSerializer(serializers.ModelSerializer):
             'variables': dict,
             'request': dict,
             'extract': dict,
-            'validate': list,
+            'validate': dict,
             'setup_hooks': list,
             'teardown_hooks': list,
         }
@@ -125,6 +121,17 @@ class CaseSerializer(serializers.ModelSerializer):
         fields = ['config', 'teststeps', 'project_id', 'desc', 'id', 'file_path',
                   'create_time', 'update_time', 'create_by', 'updated_by']  # 模型里面定义的字段可以直接写
         # 序列化器定义的字段必须在这里写出来
+
+    # 批量自定义校验器
+    def validate(self, attrs):
+        template = {
+            'config': dict,
+            'teststeps': list,
+        }
+        for parma_name, type_name in template.items():
+            if parma_name in attrs and not isinstance(attrs[parma_name], type_name):
+                raise ValidationError(f'请输入正确的{parma_name}格式：{type_name}')
+        return attrs
 
     # 新增测试用例
     def create(self, validated_data):
@@ -197,7 +204,7 @@ class CaseSerializer(serializers.ModelSerializer):
         # 最后把文件转成json
         # 要把data对象转换成字节
         # 获取文件内容--bytes
-        content = JSONRenderer().render(self.data, accepted_media_type='application/json;indent=4')
+        content = JSONRenderer().render(valid_data, accepted_media_type='application/json;indent=4')
         # 再把字符串转写入json文件
         with open(path, 'wb') as f:
             f.write(content)

@@ -106,7 +106,7 @@ function new_line_step() {
     let belong_case_id = getUrlParam('case_id')
     let default_values = {
       "name": "step_name", "variables": {}, "request": {"method":"GET","url":"/demo/path"},
-      "extract": {}, "validate": [], "setup_hooks": [], "teardown_hooks": [],
+      "extract": {}, "validate": {}, "setup_hooks": [], "teardown_hooks": [],
       "sorted_no":num,"belong_case_id":belong_case_id
     }
     $('#detail_view').bootstrapTable('append', default_values);
