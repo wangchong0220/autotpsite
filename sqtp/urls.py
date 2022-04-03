@@ -32,6 +32,7 @@ router.register(r'cases', views.CaseViewSet)
 router.register(r'steps', views.StepViewSet)
 router.register(r'projects', views.ProjectViewSet)
 router.register(r'envs', views.EnvironmentViewSet)
+router.register(r'plans', views.PlanViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

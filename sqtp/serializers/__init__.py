@@ -6,3 +6,4 @@
 from .auth import LoginSerializer, UserSerializer, RegisterSerializer
 from .mgr import EnvironmentSerializer, ProjectSerializer
 from .hr3 import RequestSerializer, StepSerializer, CaseSerializer, ConfigSerializer
+from .task import PlanSerializer
