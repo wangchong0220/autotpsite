@@ -77,8 +77,14 @@ def merge_dict(left, right):
     return left  # 这里的left是已经处理好的数据
 
 
+# 执行前清空case的py生成的文件
 def setup_case_dir(case_path):
-    empty_dir_files(case_path,'json','py','pyc')
+    empty_dir_files(case_path, 'json', 'py', 'pyc')
+
+
+# 执行前清空日志的log文件
+def setup_logs_dir(log_path):
+    empty_dir_files(log_path, 'log')
 
 
 # 每次执行前清空用例目录
@@ -87,3 +93,12 @@ def empty_dir_files(path, *suffix):  # suffix是可选参数
         for fi in files:
             if fi.split('.')[-1] in suffix:
                 os.remove(os.path.join(root, fi))
+
+
+def collect_log(path):
+    content_list = []
+    for fi in os.listdir(path):
+        with open(f'{path}/{fi}') as f:
+            content_list.append(f.read())
+    # \n是换行符，这里是给每个文件结尾都加上换行效果
+        return '\n'.join(content_list)

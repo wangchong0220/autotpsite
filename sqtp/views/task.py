@@ -3,9 +3,12 @@
 # @Author :chongwang
 # @Email  :877431474@qq.com
 # @File   :task.py
+import subprocess
+import uuid
+
 from httprunner.cli import main_run
 from rest_framework.decorators import action
-from sqtp.utils import setup_case_dir
+from sqtp.utils import setup_case_dir, collect_log, setup_logs_dir
 from sqtp.serializers import PlanSerializer, CaseSerializer
 from sqtp.models import Plan, Report
 from rest_framework import viewsets, status
@@ -34,20 +37,34 @@ class PlanViewSet(viewsets.ModelViewSet):
         plan.status = 1
         plan.save()
         setup_case_dir('sqtp/testcase')
+        setup_logs_dir('sqtp/logs')
         # 获取测试用例路径
         case_list = []
         for case in plan.cases.all():  # 生成测试用例文件，在收集测试路径
             cs = CaseSerializer(instance=case)
             path = cs.to_json_file()
             case_list.append(path)
+
+        # 采用uuid4创建报告路径
+        allure_path = f'report/{uuid.uuid4()}'
+
         # hr3执行测试用例路径列表文件
-        exit_code = main_run([*case_list, '--alluredir=report/tmp'])
+        if case_list:
+            exit_code=main_run([*case_list,f'--alluredir={allure_path}'])
+        else:
+            return Response(data={'msg':'no cases to run','retcode':304},status=304)
+        # 缓存文件转化allure报告(index.html)
+        subprocess.Popen(f'allure generate {allure_path} -o dist/{allure_path}',shell=True)
+
         # 执行后更新计划状态和执行次数
         plan.status = 3
         plan.exec_counts += 1
         plan.save()
+        # 获取日志文件
+        detail = collect_log('logs')
+
         # 保存报告数据
-        Report.objects.create(plan=plan, path='report/html/index.html',trigger=request.user)
+        Report.objects.create(plan=plan, path=f'{allure_path}/index.html', trigger=request.user, detail=detail)
         if exit_code != 0:
             return Response(data={"error": "执行计划失败", "retcode": exit_code},
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)

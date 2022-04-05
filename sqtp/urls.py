@@ -46,5 +46,7 @@ urlpatterns = [
     path('register/', views.register),
     path('login/', views.login),
     path('logout/', views.logout),
-    path('current_user/', views.current_user)
+    path('current_user/', views.current_user),
+    # 上传测试用例路由
+    path('upload/<str:filename>/', views.FileUploadView.as_view())
 ]

@@ -94,7 +94,7 @@ class StepSerializer(serializers.ModelSerializer):
             'variables': dict,
             'request': dict,
             'extract': dict,
-            'validate': dict,
+            'validate': list,
             'setup_hooks': list,
             'teardown_hooks': list,
         }
@@ -143,8 +143,19 @@ class CaseSerializer(serializers.ModelSerializer):
         project = Project.objects.get(pk=validated_data.pop('project_id'))  # 取出校验后数据里面的project_id
         config = Config.objects.create(project=project, **config_kws)  # 将config关联到用例里面
         file_path = f'{project.name}_{config.name}.json'  # 创建case后转成json数据,使用.json即可完成转换
+        # 创建用例之前，把测试步骤取出来
+        step_kws = []
+        if 'teststeps' in validated_data:
+            step_kws = validated_data.pop('teststeps')
         # 创建用例
         case = Case.objects.create(config=config, file_path=file_path, **validated_data)
+        # 创建步骤
+        if step_kws:
+            for step_kw in step_kws:
+                step_kw['belong_case_id'] = case.id
+                serializer = StepSerializer(data=step_kw)
+                if serializer.is_valid(raise_exception=True):
+                    serializer.save()
         return case
 
     # 修改测试用例
