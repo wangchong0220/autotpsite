@@ -150,6 +150,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    # 全局默认分页
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumPagination',
+
+    'DEFAULT_PAGINATION_CLASS': 'sqtp.pagination.MyPageNumberPagination',
+    'page_size': 10
 }
 
 # 让django知道使用此模型作为用户模型
